@@ -61,3 +61,27 @@
   min-width: 65%;
   min-height: 65%;
 }
+
+.checkbox-group {
+  margin: 0;
+}
+
+.checkbox-item label {
+  display: block;
+  padding: 0.3rem;
+}
+
+.generate-button {
+  float: right;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #2d5e7c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.generate-button:hover {
+  background-color: #27526d;
+}
