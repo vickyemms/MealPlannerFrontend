@@ -24,3 +24,40 @@
   font-size: 4em;
   margin-bottom: 3rem;
 }
+
+.nav-bar {
+  margin: 20px 0;
+}
+
+.nav-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-item {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.nav-item.active {
+  background-color: #b1a092;
+  color: black;
+}
+
+.nav-item:hover {
+  background-color: #7e7872;
+  color: black;
+}
+
+.content {
+  margin-top: 2rem;
+  border: 0.3rem solid black;
+  padding: 2rem;
+  min-width: 65%;
+  min-height: 65%;
+}

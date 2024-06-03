@@ -2,51 +2,35 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const alcohols = [
-    "Vodka",
-    "Whiskey",
-    "Rum",
-    "Gin",
-    "Tequila",
-    "Beer",
-    "Cider",
-    "White Wine",
-    "Red Wine",
-    "Rose Wine",
-    "Champagne",
-  ];
+  const [selectedItem, setSelectedItem] = useState("ingredients");
 
-  const [selectedAlcohols, setSelectedAlcohols] = useState([]);
-
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    if (checked) {
-      setSelectedAlcohols([...selectedAlcohols, name]);
-    } else {
-      setSelectedAlcohols(
-        selectedAlcohols.filter((alcohol) => alcohol !== name)
-      );
-    }
+  const handleNavClick = (item) => {
+    setSelectedItem(item);
   };
 
   return (
     <div className="App">
-      <div className="container">
-        <h1 className="title">Bartender</h1>
-        <p>Please click on the alcohol you have at home.</p>
-        <div className="checkbox-list">
-          {alcohols.map((alcohol) => (
-            <div key={alcohol} className="checkbox-item">
-              <input
-                type="checkbox"
-                id={alcohol}
-                name={alcohol}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor={alcohol}>{alcohol}</label>
-            </div>
-          ))}
-        </div>
+      <h1 className="title">Bartender</h1>
+      <div className="nav-bar">
+        <ul className="nav-list">
+          <li
+            className={`nav-item ${
+              selectedItem === "ingredients" ? "active" : ""
+            }`}
+            onClick={() => handleNavClick("ingredients")}
+          >
+            Ingredients
+          </li>
+          <li
+            className={`nav-item ${selectedItem === "drinks" ? "active" : ""}`}
+            onClick={() => handleNavClick("drinks")}
+          >
+            Drinks
+          </li>
+        </ul>
+      </div>
+      <div className="content">
+        {selectedItem === "ingredients" ? <p>Ingredients</p> : <p>Drinks</p>}
       </div>
     </div>
   );
