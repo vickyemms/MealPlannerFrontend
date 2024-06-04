@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
+import Drink from "./Drink";
 
 function App() {
+  const API_URL =
+    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin";
+
   const [selectedItem, setSelectedItem] = useState("ingredients");
+  const [drinks, setDrinks] = useState([]);
+
   const [ingredients, setIngredients] = useState({
     vodka: false,
     whiskey: false,
@@ -31,7 +37,12 @@ function App() {
     }));
   };
 
-  const handleGenerateDrinks = () => {
+  const handleGenerateDrinks = async () => {
+    const response = await fetch(`${API_URL}`);
+    const data = await response.json();
+
+    setDrinks(data.drinks);
+
     handleNavClick("drinks");
   };
 
@@ -79,7 +90,19 @@ function App() {
             </button>
           </div>
         ) : (
-          <p>Drinks</p>
+          <div className="drinks-list">
+            {drinks?.length > 0 ? (
+              <div>
+                {drinks.map((drink) => (
+                  <Drink drink={drink} />
+                ))}
+              </div>
+            ) : (
+              <div className="empty">
+                <h2>No drinks found</h2>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>

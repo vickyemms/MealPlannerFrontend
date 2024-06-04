@@ -85,3 +85,31 @@
 .generate-button:hover {
   background-color: #27526d;
 }
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drinks-list {
+  max-height: 85%;
+  overflow: auto;
+}
+
+img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+
+.drink {
+  max-height: 80px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 1.5rem;
+}
+
+.drink-name {
+  padding-left: 1rem;
+}
