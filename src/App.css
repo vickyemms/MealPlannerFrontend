@@ -10,56 +10,59 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
   background: linear-gradient(to right, rgb(255, 247, 0), rgb(255, 141, 2));
-}
-
-.container {
-  margin-top: 4rem;
 }
 
 .title {
   font-family: "Poetsen One", sans-serif;
-  font-size: 4em;
+  font-size: 4rem;
   margin-bottom: 3rem;
 }
 
 .nav-bar {
-  margin: 20px 0;
+  padding: 1rem;
 }
 
 .nav-list {
   list-style-type: none;
-  padding: 0;
   display: flex;
-  justify-content: center;
 }
 
 .nav-item {
-  margin: 0 10px;
-  padding: 10px 20px;
+  margin: 0.75rem;
+  padding: 0.75em;
   cursor: pointer;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-}
-
-.nav-item.active {
-  background-color: #b1a092;
-  color: black;
+  background-color: #2d5e7c;
+  color: white;
+  border-radius: 10px;
 }
 
 .nav-item:hover {
-  background-color: #7e7872;
-  color: black;
+  background-color: #27526d;
+  color: white;
 }
 
-.content {
+.nav-item.active {
+  background-color: #1a394c;
+  color: white;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
-  border: 0.3rem solid black;
+  border: 5px solid black;
   padding: 2rem;
   min-width: 65%;
-  min-height: 65%;
+  max-height: 65%;
+  overflow: auto;
+}
+
+.ingredients-instructions {
+  font-size: larger;
+  text-align: center;
+  padding-bottom: 0.75rem;
 }
 
 .checkbox-group {
@@ -71,30 +74,31 @@
   padding: 0.3rem;
 }
 
-.generate-button {
+.content-button {
   float: right;
-  margin-top: 10px;
-  padding: 10px 20px;
+  margin: 0.75rem;
+  padding: 0.75em;
+  cursor: pointer;
   background-color: #2d5e7c;
   color: white;
   border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-.generate-button:hover {
+.content-button:hover {
   background-color: #27526d;
 }
 
+.content-button:focus {
+  background-color: #1a394c;
+}
+
 .empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .drinks-list {
-  max-height: 85%;
-  overflow: auto;
+  padding: 0rem;
 }
 
 img {
