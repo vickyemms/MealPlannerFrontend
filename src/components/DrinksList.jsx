@@ -1,13 +1,20 @@
 import React from "react";
 import Drink from "./Drink";
 
-const DrinksList = ({ drinks }) => (
-  <div className="drinks-list">
+const DrinksList = ({ drinks, onClearList }) => (
+  <div>
     {drinks?.length > 0 ? (
       <div>
-        {drinks.map((drink) => (
-          <Drink key={drink.idDrink} drink={drink} />
-        ))}
+        <div className="drinks-list">
+          {drinks.map((drink) => (
+            <Drink key={drink.idDrink} drink={drink} />
+          ))}
+        </div>
+        <div>
+          <button className="content-button" onClick={onClearList}>
+            Clear
+          </button>
+        </div>
       </div>
     ) : (
       <div className="empty">

@@ -2,6 +2,9 @@ import React from "react";
 
 const Ingredients = ({ ingredients, onCheckboxChange, onGenerateDrinks }) => (
   <div>
+    <div className="ingredients-instructions">
+      <p>Select the ingredients you have at home</p>
+    </div>
     <div className="checkbox-group">
       {Object.keys(ingredients).map((ingredient) => (
         <div key={ingredient} className="checkbox-item">
@@ -17,7 +20,7 @@ const Ingredients = ({ ingredients, onCheckboxChange, onGenerateDrinks }) => (
         </div>
       ))}
     </div>
-    <button className="generate-button" onClick={onGenerateDrinks}>
+    <button className="content-button" onClick={onGenerateDrinks}>
       Generate Drinks
     </button>
   </div>
