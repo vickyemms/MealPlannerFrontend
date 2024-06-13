@@ -56,7 +56,6 @@
   padding: 2rem;
   min-width: 65%;
   max-height: 65%;
-  overflow: auto;
 }
 
 .ingredients-instructions {
@@ -95,6 +94,12 @@
 
 .empty {
   text-align: center;
+}
+
+.drinks-container {
+  max-height: 50vh;
+  margin-bottom: 1rem;
+  overflow: auto;
 }
 
 .drinks-list {

@@ -5,16 +5,16 @@ const DrinksList = ({ drinks, onClearList }) => (
   <div>
     {drinks?.length > 0 ? (
       <div>
-        <div className="drinks-list">
-          {drinks.map((drink) => (
-            <Drink key={drink.idDrink} drink={drink} />
-          ))}
+        <div className="drinks-container">
+          <div className="drinks-list">
+            {drinks.map((drink) => (
+              <Drink key={drink.idDrink} drink={drink} />
+            ))}
+          </div>
         </div>
-        <div>
-          <button className="content-button" onClick={onClearList}>
-            Clear
-          </button>
-        </div>
+        <button className="content-button" onClick={onClearList}>
+          Clear
+        </button>
       </div>
     ) : (
       <div className="empty">
