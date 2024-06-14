@@ -79,19 +79,20 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">Bartender</h1>
       <Navbar selectedItem={selectedItem} onNavClick={handleNavClick} />
-      <div className="main-content">
-        {selectedItem === "ingredients" ? (
-          <Ingredients
-            ingredients={ingredients}
-            onCheckboxChange={handleCheckboxChange}
-            onGenerateDrinks={handleGenerateDrinks}
-          />
-        ) : (
-          <DrinksList drinks={drinks} onClearList={clearList} />
-        )}
-      </div>
+      <main>
+        <div className="main-content">
+          {selectedItem === "ingredients" ? (
+            <Ingredients
+              ingredients={ingredients}
+              onCheckboxChange={handleCheckboxChange}
+              onGenerateDrinks={handleGenerateDrinks}
+            />
+          ) : (
+            <DrinksList drinks={drinks} onClearList={clearList} />
+          )}
+        </div>
+      </main>
     </div>
   );
 }
