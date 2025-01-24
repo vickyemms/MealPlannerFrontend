@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = ({ selectedItem, onNavClick }) => (
   <header>
-    <h1 className="logo">Bartender</h1>
+    <h1 className="logo">Meal Planner</h1>
     <nav className="nav-bar">
       <ul className="nav-list">
         <li
@@ -11,13 +11,13 @@ const Navbar = ({ selectedItem, onNavClick }) => (
           }`}
           onClick={() => onNavClick("ingredients")}
         >
-          Ingredients
+          Recipes
         </li>
         <li
           className={`nav-item ${selectedItem === "drinks" ? "active" : ""}`}
           onClick={() => onNavClick("drinks")}
         >
-          Drinks
+          Grocery List
         </li>
       </ul>
     </nav>

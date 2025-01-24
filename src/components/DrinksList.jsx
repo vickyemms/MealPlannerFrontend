@@ -18,7 +18,7 @@ const DrinksList = ({ drinks, onClearList }) => (
       </div>
     ) : (
       <div className="empty">
-        <h2>No drinks found</h2>
+        <h2>Haven't added any recipes yet</h2>
       </div>
     )}
   </div>
