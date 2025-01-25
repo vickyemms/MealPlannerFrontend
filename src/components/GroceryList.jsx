@@ -1,7 +1,7 @@
 import React from "react";
 import Drink from "./Drink";
 
-const DrinksList = ({ drinks, onClearList }) => (
+const GroceryList = ({ drinks, onClearList }) => (
   <div>
     {drinks?.length > 0 ? (
       <div>
@@ -24,4 +24,4 @@ const DrinksList = ({ drinks, onClearList }) => (
   </div>
 );
 
-export default DrinksList;
+export default GroceryList;

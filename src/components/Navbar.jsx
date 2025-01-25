@@ -6,22 +6,22 @@ const Navbar = ({ selectedItem, onNavClick }) => (
     <nav className="nav-bar">
       <ul className="nav-list">
         <li
-          className={`nav-item ${
-            selectedItem === "ingredients" ? "active" : ""
-          }`}
-          onClick={() => onNavClick("ingredients")}
+          className={`nav-item ${selectedItem === "recipes" ? "active" : ""}`}
+          onClick={() => onNavClick("recipes")}
         >
           Recipes
         </li>
         <li
-          className={`nav-item ${selectedItem === "drinks" ? "active" : ""}`}
-          onClick={() => onNavClick("drinks")}
+          className={`nav-item ${
+            selectedItem === "groceryList" ? "active" : ""
+          }`}
+          onClick={() => onNavClick("groceryList")}
         >
           Grocery List
         </li>
       </ul>
     </nav>
-    <h1>Search</h1>
+    <h1>Filter</h1>
   </header>
 );
 
