@@ -1,80 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Ingredients from "./components/Ingredients";
-import DrinksList from "./components/DrinksList";
+import Recipes from "./components/Recipes";
+import GroceryList from "./components/GroceryList";
 
 function App() {
-  const [selectedItem, setSelectedItem] = useState("ingredients");
-  const [drinks, setDrinks] = useState([]);
-  const [ingredients, setIngredients] = useState({
-    vodka: false,
-    whiskey: false,
-    gin: false,
-    rum: false,
-    scotch: false,
-    brandy: false,
-    bourbon: false,
-    cognac: false,
-    champagne: false,
-    tequila: false,
-    kahlua: false,
-    cider: false,
-    lager: false,
-  });
+  const [selectedItem, setSelectedItem] = useState("recipes");
+  const [recipes, setRecipes] = useState([]);
+  const [groceryList, setGroceryList] = useState([]);
 
   const handleNavClick = (item) => {
     setSelectedItem(item);
   };
 
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setIngredients((prevIngredients) => ({
-      ...prevIngredients,
-      [name]: checked,
-    }));
+  const handleFetchRecipes = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/recipes");
+      const data = await response.json();
+      setRecipes(data);
+    } catch (error) {
+      console.error("Failed to fetch recipes:", error);
+    }
   };
 
-  const handleGenerateDrinks = async () => {
-    const selectedIngredients = Object.keys(ingredients).filter(
-      (ingredient) => ingredients[ingredient]
-    );
+  useEffect(() => {
+    handleFetchRecipes();
+  }, []);
 
-    const drinkPromises = selectedIngredients.map((ingredient) =>
-      fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`
-      ).then((response) => response.json())
-    );
-
-    const drinkResults = await Promise.all(drinkPromises);
-
-    const allDrinks = drinkResults.flatMap((result) => result.drinks);
-    const uniqueDrinks = Array.from(
-      new Set(allDrinks.map((drink) => drink.idDrink))
-    ).map((id) => allDrinks.find((drink) => drink.idDrink === id));
-
-    setDrinks(uniqueDrinks);
-    handleNavClick("drinks");
+  const handleAddToGroceryList = (recipe) => {
+    // Implementation will be added later
   };
 
-  const clearList = () => {
-    setDrinks([]);
-    setIngredients({
-      vodka: false,
-      whiskey: false,
-      gin: false,
-      rum: false,
-      scotch: false,
-      brandy: false,
-      bourbon: false,
-      cognac: false,
-      champagne: false,
-      tequila: false,
-      kahlua: false,
-      cider: false,
-      lager: false,
-    });
-    handleNavClick("ingredients");
+  // Empty method to clear the grocery list
+  const handleClearList = () => {
+    // Implementation will be added later
   };
 
   return (
@@ -82,14 +41,16 @@ function App() {
       <Navbar selectedItem={selectedItem} onNavClick={handleNavClick} />
       <main>
         <div className="main-content">
-          {selectedItem === "ingredients" ? (
-            <Ingredients
-              ingredients={ingredients}
-              onCheckboxChange={handleCheckboxChange}
-              onGenerateDrinks={handleGenerateDrinks}
+          {selectedItem === "recipes" ? (
+            <Recipes
+              recipes={recipes}
+              onAddToGroceryList={handleAddToGroceryList}
             />
           ) : (
-            <DrinksList drinks={drinks} onClearList={clearList} />
+            <GroceryList
+              groceryList={groceryList}
+              onClearList={handleClearList}
+            />
           )}
         </div>
       </main>
