@@ -5,7 +5,7 @@ const Recipes = ({ recipes, onAddToGroceryList }) => {
     <div className="recipes-list">
       <h2>Recipes</h2>
       {recipes.length === 0 ? (
-        <p>No recipes available. Fetch some recipes!</p>
+        <p>The recipes weren't able to load properly. Please try again!</p>
       ) : (
         <ul>
           {recipes.map((recipe) => (
