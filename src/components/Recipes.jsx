@@ -1,4 +1,5 @@
 import React from "react";
+import Recipe from "./Recipe";
 
 const Recipes = ({ recipes, onAddToGroceryList }) => {
   return (
@@ -7,19 +8,15 @@ const Recipes = ({ recipes, onAddToGroceryList }) => {
       {recipes.length === 0 ? (
         <p>The recipes weren't able to load properly. Please try again!</p>
       ) : (
-        <ul>
+        <div>
           {recipes.map((recipe) => (
-            <li key={recipe.id} className="recipe-item">
-              <span>{recipe.name}</span>
-              <button
-                onClick={() => onAddToGroceryList(recipe)}
-                className="add-button"
-              >
-                Add
-              </button>
-            </li>
+            <Recipe
+              key={recipe.id}
+              recipe={recipe}
+              onAddToGroceryList={onAddToGroceryList}
+            />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
