@@ -67,56 +67,6 @@ header {
   max-height: 65%;
 }
 
-.content-button {
-  float: right;
-  margin: 0.75rem;
-  padding: 0.75em;
-  cursor: pointer;
-  background-color: #2d5e7c;
-  color: white;
-  border: none;
-  border-radius: 10px;
-}
-
-.content-button:hover {
-  background-color: #27526d;
-}
-
-.content-button:focus {
-  background-color: #1a394c;
-}
-
-.empty {
-  text-align: center;
-}
-
-.drinks-container {
-  max-height: 50vh;
-  margin-bottom: 1rem;
-  overflow: auto;
-}
-
-.drinks-list {
-  padding: 0rem;
-}
-
-img {
-  height: 70px;
-  width: 70px;
-  object-fit: cover;
-}
-
-.drink {
-  max-height: 80px;
-  display: flex;
-  flex-direction: row;
-  padding-top: 1.5rem;
-}
-
-.drink-name {
-  padding-left: 1rem;
-}
-
 .recipes-list {
   max-height: 75vh;
   min-width: 75vw;
