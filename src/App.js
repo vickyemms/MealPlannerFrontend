@@ -28,12 +28,34 @@ function App() {
   }, []);
 
   const handleAddToGroceryList = (recipe) => {
-    // Implementation will be added later
+    setGroceryList((prevList) => {
+      const updatedList = [...prevList];
+
+      recipe.ingredients.forEach((ingredient) => {
+        const existingItem = updatedList.find(
+          (item) => item.id === ingredient.id
+        );
+
+        if (existingItem) {
+          // If ingredient already exists, update its amount
+          existingItem.amount += ingredient.amount;
+        } else {
+          // Otherwise, add it as a new entry
+          updatedList.push({
+            id: ingredient.id,
+            name: ingredient.name,
+            amount: ingredient.amount,
+            unit: ingredient.unit,
+          });
+        }
+      });
+
+      return updatedList;
+    });
   };
 
-  // Empty method to clear the grocery list
   const handleClearList = () => {
-    // Implementation will be added later
+    setGroceryList([]);
   };
 
   return (

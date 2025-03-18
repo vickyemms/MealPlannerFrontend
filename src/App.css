@@ -109,7 +109,7 @@ header {
   color: #000000;
 }
 
-.add-button {
+button {
   background-color: rgb(1, 173, 253);
   color: #000000;
   border: none;
@@ -119,6 +119,25 @@ header {
   cursor: pointer;
 }
 
-.add-button:hover {
+button:hover {
   background-color: #213788;
+}
+
+button:active {
+  background-color: #0e1941;
+}
+
+.grocery-list {
+  max-height: 75vh;
+  min-width: 75vw;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+.grocery-list-header {
+  padding-bottom: 20px;
+}
+
+.grocery-list-item {
+  padding-bottom: 5px;
 }
