@@ -16,7 +16,9 @@ const Recipe = ({ recipe, onAddToGroceryList }) => {
           <strong>Healthiness:</strong> {recipe.healthiness}
         </p>
       </div>
-      <button onClick={() => onAddToGroceryList(recipe)}>Add</button>
+      <button className="add-button" onClick={() => onAddToGroceryList(recipe)}>
+        Add
+      </button>
     </div>
   );
 };

@@ -74,6 +74,10 @@ header {
   overflow: auto;
 }
 
+.recipes-unloaded {
+  padding-top: 10px;
+}
+
 .recipe-item {
   display: flex;
   align-items: center;
@@ -109,7 +113,7 @@ header {
   color: #000000;
 }
 
-button {
+.add-button {
   background-color: rgb(1, 173, 253);
   color: #000000;
   border: none;
@@ -119,11 +123,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.add-button:hover {
   background-color: #213788;
 }
 
-button:active {
+.add-button:active {
   background-color: #0e1941;
 }
 
@@ -140,4 +144,28 @@ button:active {
 
 .grocery-list-item {
   padding-bottom: 5px;
+}
+
+.grocery-button-container {
+  padding-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.grocery-button {
+  background-color: rgb(197, 218, 228);
+  color: #000000;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.grocery-button:hover {
+  background-color: #606576;
+}
+
+.grocery-button:active {
+  background-color: #323337;
 }

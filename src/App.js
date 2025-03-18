@@ -29,28 +29,19 @@ function App() {
 
   const handleAddToGroceryList = (recipe) => {
     setGroceryList((prevList) => {
-      const updatedList = [...prevList];
-
-      recipe.ingredients.forEach((ingredient) => {
-        const existingItem = updatedList.find(
-          (item) => item.id === ingredient.id
-        );
+      return recipe.ingredients.reduce((newList, ingredient) => {
+        const existingItem = newList.find((item) => item.id === ingredient.id);
 
         if (existingItem) {
-          // If ingredient already exists, update its amount
-          existingItem.amount += ingredient.amount;
+          return newList.map((item) =>
+            item.id === ingredient.id
+              ? { ...item, amount: item.amount + ingredient.amount }
+              : item
+          );
         } else {
-          // Otherwise, add it as a new entry
-          updatedList.push({
-            id: ingredient.id,
-            name: ingredient.name,
-            amount: ingredient.amount,
-            unit: ingredient.unit,
-          });
+          return [...newList, { ...ingredient }];
         }
-      });
-
-      return updatedList;
+      }, prevList);
     });
   };
 

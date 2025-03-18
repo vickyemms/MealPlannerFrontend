@@ -12,7 +12,14 @@ const GroceryList = ({ groceryList, onClearList }) => (
             </li>
           ))}
         </ul>
-        <button onClick={onClearList}>Clear List</button>
+        <div className="grocery-button-container">
+          <button className="grocery-button" onClick={onClearList}>
+            Clear List
+          </button>
+          <button className="grocery-button" onClick={onClearList}>
+            Remove
+          </button>
+        </div>
       </div>
     ) : (
       <div className="empty">
