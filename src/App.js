@@ -8,6 +8,7 @@ function App() {
   const [selectedItem, setSelectedItem] = useState("recipes");
   const [recipes, setRecipes] = useState([]);
   const [groceryList, setGroceryList] = useState([]);
+  const [checkedItems, setCheckedItems] = useState(new Set());
 
   const handleNavClick = (item) => {
     setSelectedItem(item);
@@ -49,6 +50,21 @@ function App() {
     setGroceryList([]);
   };
 
+  const handleCheckboxChange = (id) => {
+    setCheckedItems((prevChecked) => {
+      const newChecked = new Set(prevChecked);
+      newChecked.has(id) ? newChecked.delete(id) : newChecked.add(id);
+      return newChecked;
+    });
+  };
+
+  const handleRemoveCheckedItems = () => {
+    setGroceryList((prevList) =>
+      prevList.filter((item) => !checkedItems.has(item.id))
+    );
+    setCheckedItems(new Set());
+  };
+
   return (
     <div className="App">
       <Navbar selectedItem={selectedItem} onNavClick={handleNavClick} />
@@ -62,6 +78,9 @@ function App() {
           ) : (
             <GroceryList
               groceryList={groceryList}
+              checkedItems={checkedItems}
+              onCheckboxChange={handleCheckboxChange}
+              onRemoveCheckedItems={handleRemoveCheckedItems}
               onClearList={handleClearList}
             />
           )}
