@@ -31,11 +31,13 @@ function App() {
   const handleAddToGroceryList = (recipe) => {
     setGroceryList((prevList) => {
       return recipe.ingredients.reduce((newList, ingredient) => {
-        const existingItem = newList.find((item) => item.id === ingredient.id);
+        const existingItem = newList.find(
+          (item) => item.name.toLowerCase() === ingredient.name.toLowerCase()
+        );
 
         if (existingItem) {
           return newList.map((item) =>
-            item.id === ingredient.id
+            item.name.toLowerCase() === ingredient.name.toLowerCase()
               ? { ...item, amount: item.amount + ingredient.amount }
               : item
           );
