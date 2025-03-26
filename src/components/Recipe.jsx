@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Recipe = ({ recipe, onAddToGroceryList }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="recipe-item">
+    <div
+      className="recipe-item"
+      onClick={() => navigate(`/recipe/${recipe.id}`)}
+      style={{ cursor: "pointer" }}
+    >
       <img src={recipe.imageURL} alt={recipe.name} className="recipe-image" />
       <div className="recipe-details">
         <h3>{recipe.name}</h3>

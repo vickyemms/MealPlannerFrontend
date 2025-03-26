@@ -1,5 +1,12 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import RecipeDetail from "./RecipeDetail";
 import Navbar from "./components/Navbar";
 import Recipes from "./components/Recipes";
 import GroceryList from "./components/GroceryList";
@@ -97,34 +104,53 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Navbar selectedItem={selectedItem} onNavClick={handleNavClick} />
-      <main>
-        <div className="main-content">
-          {selectedItem === "recipes" ? (
-            <Recipes recipes={recipes} onAddToGroceryList={handleOpenPopup} />
-          ) : (
-            <GroceryList
-              groceryList={groceryList}
-              checkedItems={checkedItems}
-              onCheckboxChange={handleCheckboxChange}
-              onRemoveCheckedItems={handleRemoveCheckedItems}
-              onClearList={handleClearList}
-            />
-          )}
-        </div>
-      </main>
+    <Router>
+      <Routes>
+        {/* Main Page (Includes Everything) */}
+        <Route
+          path="/"
+          element={
+            <div className="App">
+              <Navbar selectedItem={selectedItem} onNavClick={handleNavClick} />
+              <main>
+                <div className="main-content">
+                  {selectedItem === "recipes" ? (
+                    <Recipes
+                      recipes={recipes}
+                      onAddToGroceryList={handleOpenPopup}
+                    />
+                  ) : (
+                    <GroceryList
+                      groceryList={groceryList}
+                      checkedItems={checkedItems}
+                      onCheckboxChange={handleCheckboxChange}
+                      onRemoveCheckedItems={handleRemoveCheckedItems}
+                      onClearList={handleClearList}
+                    />
+                  )}
+                </div>
+              </main>
 
-      {isPopupOpen && selectedRecipe && (
-        <IngredientPopup
-          recipe={selectedRecipe}
-          selectedIngredients={selectedIngredients}
-          onCheckboxChange={handleIngredientCheckbox}
-          onClose={() => setIsPopupOpen(false)}
-          onConfirm={handleConfirmAddIngredients}
+              {isPopupOpen && selectedRecipe && (
+                <IngredientPopup
+                  recipe={selectedRecipe}
+                  selectedIngredients={selectedIngredients}
+                  onCheckboxChange={handleIngredientCheckbox}
+                  onClose={() => setIsPopupOpen(false)}
+                  onConfirm={handleConfirmAddIngredients}
+                />
+              )}
+            </div>
+          }
         />
-      )}
-    </div>
+
+        {/* Recipe Details Page */}
+        <Route
+          path="/recipe/:id"
+          element={<RecipeDetail recipes={recipes} />}
+        />
+      </Routes>
+    </Router>
   );
 }
 
