@@ -44,7 +44,6 @@ function App() {
     setIsPopupOpen(true);
   };
 
-  // Handle checkbox changes
   const handleIngredientCheckbox = (ingredientName) => {
     setSelectedIngredients((prevSelected) => {
       const updatedSet = new Set(prevSelected);
@@ -55,13 +54,12 @@ function App() {
     });
   };
 
-  // Add selected ingredients to the grocery list
   const handleConfirmAddIngredients = () => {
     if (!selectedRecipe) return;
 
     setGroceryList((prevList) => {
       return selectedRecipe.ingredients.reduce((newList, ingredient) => {
-        if (!selectedIngredients.has(ingredient.name)) return newList; // Only add selected items
+        if (!selectedIngredients.has(ingredient.name)) return newList;
 
         const existingItem = newList.find(
           (item) => item.name.toLowerCase() === ingredient.name.toLowerCase()
@@ -79,7 +77,6 @@ function App() {
       }, prevList);
     });
 
-    // Close popup and reset selected ingredients
     setIsPopupOpen(false);
     setSelectedIngredients(new Set());
   };
@@ -106,7 +103,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Main Page (Includes Everything) */}
         <Route
           path="/"
           element={
@@ -144,7 +140,6 @@ function App() {
           }
         />
 
-        {/* Recipe Details Page */}
         <Route
           path="/recipe/:id"
           element={<RecipeDetail recipes={recipes} />}

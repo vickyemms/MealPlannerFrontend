@@ -8,7 +8,6 @@ const Recipe = ({ recipe, onAddToGroceryList }) => {
     <div
       className="recipe-item"
       onClick={() => navigate(`/recipe/${recipe.id}`)}
-      style={{ cursor: "pointer" }}
     >
       <img src={recipe.imageURL} alt={recipe.name} className="recipe-image" />
       <div className="recipe-details">
@@ -23,7 +22,13 @@ const Recipe = ({ recipe, onAddToGroceryList }) => {
           <strong>Healthiness:</strong> {recipe.healthiness}
         </p>
       </div>
-      <button className="add-button" onClick={() => onAddToGroceryList(recipe)}>
+      <button
+        className="add-button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onAddToGroceryList(recipe);
+        }}
+      >
         Add
       </button>
     </div>

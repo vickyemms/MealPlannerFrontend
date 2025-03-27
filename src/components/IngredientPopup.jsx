@@ -15,7 +15,6 @@ const IngredientPopup = ({
       <div className="popup-content">
         <h2>Select Ingredients to Add</h2>
 
-        {/* Not found at home */}
         <div className="ingredient-section">
           <h3>Add Ingredients</h3>
           {notFoundAtHome.map((ingredient) => (
@@ -30,7 +29,6 @@ const IngredientPopup = ({
           ))}
         </div>
 
-        {/* Usually found at home */}
         <div className="ingredient-section">
           <h3>Usually Found at Home</h3>
           {foundAtHome.map((ingredient) => (
@@ -45,7 +43,6 @@ const IngredientPopup = ({
           ))}
         </div>
 
-        {/* Buttons */}
         <div className="popup-buttons-container">
           <button className="popup-button" onClick={onClose}>
             Cancel
