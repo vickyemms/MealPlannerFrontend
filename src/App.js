@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import RecipeDetail from "./RecipeDetail";
@@ -11,13 +6,15 @@ import Navbar from "./components/Navbar";
 import Recipes from "./components/Recipes";
 import GroceryList from "./components/GroceryList";
 import IngredientPopup from "./components/IngredientPopup";
+import FilterPopup from "./components/FilterPopup";
 
 function App() {
   const [selectedItem, setSelectedItem] = useState("recipes");
   const [recipes, setRecipes] = useState([]);
   const [groceryList, setGroceryList] = useState([]);
   const [checkedItems, setCheckedItems] = useState(new Set());
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
+  const [isFilterPopupOpen, setIsFilterPopupOpen] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [selectedIngredients, setSelectedIngredients] = useState(new Set());
 
@@ -39,9 +36,9 @@ function App() {
     handleFetchRecipes();
   }, []);
 
-  const handleOpenPopup = (recipe) => {
+  const handleAddOpenPopup = (recipe) => {
     setSelectedRecipe(recipe);
-    setIsPopupOpen(true);
+    setIsAddPopupOpen(true);
   };
 
   const handleIngredientCheckbox = (ingredientName) => {
@@ -77,8 +74,12 @@ function App() {
       }, prevList);
     });
 
-    setIsPopupOpen(false);
+    setIsAddPopupOpen(false);
     setSelectedIngredients(new Set());
+  };
+
+  const handleFilterClick = () => {
+    setIsFilterPopupOpen((prev) => !prev);
   };
 
   const handleClearList = () => {
@@ -107,13 +108,17 @@ function App() {
           path="/"
           element={
             <div className="App">
-              <Navbar selectedItem={selectedItem} onNavClick={handleNavClick} />
+              <Navbar
+                selectedItem={selectedItem}
+                onNavClick={handleNavClick}
+                onFilterClick={handleFilterClick}
+              />
               <main>
                 <div className="main-content">
                   {selectedItem === "recipes" ? (
                     <Recipes
                       recipes={recipes}
-                      onAddToGroceryList={handleOpenPopup}
+                      onAddToGroceryList={handleAddOpenPopup}
                     />
                   ) : (
                     <GroceryList
@@ -127,15 +132,17 @@ function App() {
                 </div>
               </main>
 
-              {isPopupOpen && selectedRecipe && (
+              {isAddPopupOpen && selectedRecipe && (
                 <IngredientPopup
                   recipe={selectedRecipe}
                   selectedIngredients={selectedIngredients}
                   onCheckboxChange={handleIngredientCheckbox}
-                  onClose={() => setIsPopupOpen(false)}
+                  onClose={() => setIsAddPopupOpen(false)}
                   onConfirm={handleConfirmAddIngredients}
                 />
               )}
+
+              {isFilterPopupOpen && <FilterPopup onClose={handleFilterClick} />}
             </div>
           }
         />

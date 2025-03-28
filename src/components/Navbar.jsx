@@ -1,6 +1,7 @@
 import React from "react";
+import { FaFilter } from "react-icons/fa";
 
-const Navbar = ({ selectedItem, onNavClick }) => (
+const Navbar = ({ selectedItem, onNavClick, onFilterClick }) => (
   <header>
     <h1 className="logo">Meal Planner</h1>
     <nav className="nav-bar">
@@ -21,7 +22,7 @@ const Navbar = ({ selectedItem, onNavClick }) => (
         </li>
       </ul>
     </nav>
-    <h1>Filter</h1>
+    <FaFilter className="filter-icon" onClick={onFilterClick} />
   </header>
 );
 
