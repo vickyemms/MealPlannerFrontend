@@ -11,12 +11,19 @@ import FilterPopup from "./components/FilterPopup";
 function App() {
   const [selectedItem, setSelectedItem] = useState("recipes");
   const [recipes, setRecipes] = useState([]);
+
+  const [allRecipes, setAllRecipes] = useState([]);
   const [groceryList, setGroceryList] = useState([]);
   const [checkedItems, setCheckedItems] = useState(new Set());
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
   const [isFilterPopupOpen, setIsFilterPopupOpen] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [selectedIngredients, setSelectedIngredients] = useState(new Set());
+  const [filters, setFilters] = useState({
+    cuisine: new Set(),
+    protein: new Set(),
+    healthiness: new Set(),
+  });
 
   const handleNavClick = (item) => {
     setSelectedItem(item);
@@ -27,6 +34,7 @@ function App() {
       const response = await fetch("http://localhost:8080/recipes");
       const data = await response.json();
       setRecipes(data);
+      setAllRecipes(data);
     } catch (error) {
       console.error("Failed to fetch recipes:", error);
     }
@@ -79,6 +87,44 @@ function App() {
   };
 
   const handleFilterClick = () => {
+    setIsFilterPopupOpen((prev) => !prev);
+  };
+
+  const handleApplyFilter = (selectedFilters) => {
+    setFilters({
+      cuisine: selectedFilters.cuisine || new Set(),
+      protein: selectedFilters.protein || new Set(),
+      healthiness: selectedFilters.healthiness || new Set(),
+    });
+
+    // Filter recipes based on selected filters
+    const filtered = recipes.filter((recipe) => {
+      const isCuisineMatch = selectedFilters.cuisine?.size
+        ? selectedFilters.cuisine.has(recipe.cuisine)
+        : true;
+      const isProteinMatch = selectedFilters.protein?.size
+        ? selectedFilters.protein.has(recipe.protein)
+        : true;
+      const isHealthinessMatch = selectedFilters.healthiness?.size
+        ? selectedFilters.healthiness.has(recipe.healthiness)
+        : true;
+
+      return isCuisineMatch && isProteinMatch && isHealthinessMatch;
+    });
+
+    setRecipes(filtered);
+
+    setIsFilterPopupOpen((prev) => !prev);
+  };
+
+  const handleClearFilters = () => {
+    setFilters({
+      cuisine: new Set(),
+      protein: new Set(),
+      healthiness: new Set(),
+    });
+    setRecipes(allRecipes); // Reset to all recipes
+
     setIsFilterPopupOpen((prev) => !prev);
   };
 
@@ -142,7 +188,13 @@ function App() {
                 />
               )}
 
-              {isFilterPopupOpen && <FilterPopup onClose={handleFilterClick} />}
+              {isFilterPopupOpen && (
+                <FilterPopup
+                  onClose={handleFilterClick}
+                  onApply={handleApplyFilter}
+                  onClear={handleClearFilters}
+                />
+              )}
             </div>
           }
         />
