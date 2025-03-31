@@ -97,7 +97,6 @@ function App() {
       healthiness: selectedFilters.healthiness || new Set(),
     });
 
-    // Filter recipes based on selected filters
     const filtered = recipes.filter((recipe) => {
       const isCuisineMatch = selectedFilters.cuisine?.size
         ? selectedFilters.cuisine.has(recipe.cuisine)
@@ -123,7 +122,7 @@ function App() {
       protein: new Set(),
       healthiness: new Set(),
     });
-    setRecipes(allRecipes); // Reset to all recipes
+    setRecipes(allRecipes);
 
     setIsFilterPopupOpen((prev) => !prev);
   };
@@ -190,6 +189,7 @@ function App() {
 
               {isFilterPopupOpen && (
                 <FilterPopup
+                  filters={filters}
                   onClose={handleFilterClick}
                   onApply={handleApplyFilter}
                   onClear={handleClearFilters}

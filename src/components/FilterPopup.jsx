@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const FilterPopup = ({ onClose, onApply, onClear }) => {
-  // State to track the selected filters in the popup
+const FilterPopup = ({ filters, onClose, onApply, onClear }) => {
   const [selectedCuisine, setSelectedCuisine] = useState(new Set());
   const [selectedProtein, setSelectedProtein] = useState(new Set());
   const [selectedHealthiness, setSelectedHealthiness] = useState(new Set());
 
-  // Handle checkbox changes for different filters
+  useEffect(() => {
+    setSelectedCuisine(new Set(filters.cuisine));
+    setSelectedProtein(new Set(filters.protein));
+    setSelectedHealthiness(new Set(filters.healthiness));
+  }, [filters]);
+
   const handleCheckboxChange = (filterType, value) => {
     const updateSet = (set) => {
       const updatedSet = new Set(set);
@@ -23,7 +27,6 @@ const FilterPopup = ({ onClose, onApply, onClear }) => {
     }
   };
 
-  // Handle applying filters and sending selected values back to the parent component
   const handleApply = () => {
     onApply({
       cuisine: selectedCuisine,
@@ -54,6 +57,7 @@ const FilterPopup = ({ onClose, onApply, onClear }) => {
                 type="checkbox"
                 name="cuisine"
                 value={cuisine}
+                checked={selectedCuisine.has(cuisine)}
                 onChange={() => handleCheckboxChange("cuisine", cuisine)}
               />
               {cuisine}
@@ -78,6 +82,7 @@ const FilterPopup = ({ onClose, onApply, onClear }) => {
                 type="checkbox"
                 name="protein"
                 value={protein}
+                checked={selectedProtein.has(protein)}
                 onChange={() => handleCheckboxChange("protein", protein)}
               />
               {protein}
@@ -93,6 +98,7 @@ const FilterPopup = ({ onClose, onApply, onClear }) => {
                 type="checkbox"
                 name="healthiness"
                 value={healthiness}
+                checked={selectedHealthiness.has(healthiness)}
                 onChange={() =>
                   handleCheckboxChange("healthiness", healthiness)
                 }
