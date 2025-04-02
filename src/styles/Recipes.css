@@ -1,0 +1,10 @@
+.recipes-list {
+  max-height: 75vh;
+  min-width: 75vw;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+.recipes-unloaded {
+  padding-top: 10px;
+}

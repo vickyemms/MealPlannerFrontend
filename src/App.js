@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import RecipeDetail from "./RecipeDetail";
+import "./styles/App.css";
+import RecipeDetails from "./pages/RecipeDetails";
 import Navbar from "./components/Navbar";
 import Recipes from "./components/Recipes";
 import GroceryList from "./components/GroceryList";
@@ -201,7 +201,7 @@ function App() {
 
         <Route
           path="/recipe/:id"
-          element={<RecipeDetail recipes={recipes} />}
+          element={<RecipeDetails recipes={recipes} />}
         />
       </Routes>
     </Router>

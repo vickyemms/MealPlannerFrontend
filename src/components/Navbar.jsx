@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFilter } from "react-icons/fa";
+import "../styles/Navbar.css";
 
 const Navbar = ({ selectedItem, onNavClick, onFilterClick }) => (
   <header>

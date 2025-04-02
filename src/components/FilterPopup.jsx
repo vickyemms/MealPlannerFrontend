@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "../styles/Popup.css";
+import "../styles/FilterPopup.css";
 
 const FilterPopup = ({ filters, onClose, onApply, onClear }) => {
   const [selectedCuisine, setSelectedCuisine] = useState(new Set());

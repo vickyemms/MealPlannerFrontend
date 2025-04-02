@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
+import "../styles/RecipeDetails.css";
 
-const RecipeDetail = ({ recipes }) => {
+const RecipeDetails = ({ recipes }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -39,4 +40,4 @@ const RecipeDetail = ({ recipes }) => {
   );
 };
 
-export default RecipeDetail;
+export default RecipeDetails;

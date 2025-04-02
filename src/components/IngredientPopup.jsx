@@ -1,4 +1,6 @@
 import React from "react";
+import "../styles/Popup.css";
+import "../styles/IngredientPopup.css";
 
 const IngredientPopup = ({
   recipe,
